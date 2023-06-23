@@ -1,8 +1,10 @@
+import Footer from "./components/Footer.jsx";
+import Header from "./components/Header.jsx";
 import Menus from "./components/Menus.jsx"
 // importarlos -useEffect -useState
 import { useEffect, useState } from 'react';
 
-function Main() {
+function Index() {
     const [menus, setMenu] = useState([]);
 
     const [show, setShow] = useState(true);
@@ -12,6 +14,7 @@ function Main() {
         fetch(url)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 setMenu(data);
             })
             .catch(error => console.log(error))
@@ -29,16 +32,16 @@ function Main() {
         setShow(!show)
     }
 
-
     return (
         <>
-        <main>
+            <Header />
+            <main>
                 <section>
                     <h3>¡Pedi lo que quieras!</h3>
                     <p>Minutas, comidas gourmet, postres y mucho más.</p>
                     <div>
-                        <button>Publica tu Oferta</button>
-                        <button onClick={handleClick} >{message}</button>
+                        <li><button>Publica tu Oferta</button></li>
+                        <li><button onClick={handleClick} >{message}</button></li>
                     </div>
                     <p>Mira nuestra reputacion!</p>
                 </section>
@@ -50,8 +53,9 @@ function Main() {
                     <Menus menus={menus} />
                 </section>
             </div>
+            <Footer />
         </>
     )
 }
 
-export default Main
+export default Index

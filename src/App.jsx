@@ -1,16 +1,19 @@
 import './styles/App.css';
-import Header from './views/Header.jsx';
-import Main from './views/Main.jsx';
-import Footer from './views/Footer.jsx';
+import Login from "./views/Login.jsx"
+import Index from './views/Index.jsx';
 import { Routes, Route } from "react-router-dom";
+
 
 function App() {
 
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
+    <Routes>
+      <Route exact path='/Index.jsx' element={<Index/>} />
+      <Route exact path='/Login.jsx' element={<Login/>} />
+      <Route exact path='/' element={<Index/>} />
+      <Route exact path='/' element={<Index/>} />
+    </Routes>
     </>
   )
 }
