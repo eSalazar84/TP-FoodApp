@@ -1,5 +1,6 @@
-*{
-    background-color:  bisque 
+* {
+    background-color: rgb(233, 105, 46);
+    color: aliceblue;
 }
 
 .form-box {
@@ -45,6 +46,12 @@ input {
 }
 
 /* ----- Cards ------- */
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
 .show {
     display: block;
@@ -98,4 +105,31 @@ ul {
 li {
     list-style: none;
 
+}
+
+/* ----- Index ------- */
+
+.section-position{
+    display: flex;
+}
+
+.photo-container {
+    position: relative;
+}
+
+.image {
+    position: absolute;
+}
+
+.img-1 {
+    top: 0;
+    right: 0;
+    width: 36rem;
+}
+
+.img-2 {
+    top: 20px;
+    /* Ajusta la distancia vertical entre las imágenes */
+    right: 0;
+    width: 36rem;
 }

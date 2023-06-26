@@ -11,16 +11,16 @@ function Index() {
     const [show, setShow] = useState(false);
 
     const BASE_URL = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
-   
+
 
     const fetchMenus = (url) => {
         fetch(url)
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            setMenu(data);
-        })
-        .catch(err => console.log(err))
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setMenu(data);
+            })
+            .catch(err => console.log(err))
     }
 
     useEffect(() => {
@@ -39,19 +39,23 @@ function Index() {
         <>
             <Header />
             <main>
-                <section>
+                <section className="section-position">
                     <h3>¡Pedi lo que quieras!</h3>
                     <p>Minutas, comidas gourmet, postres y mucho más.</p>
                     <div>
                         <ul>
-                        <li><button>Publica tu Oferta</button></li>
-                        <li><button onClick={handleClick} >{message}</button></li>
+                            <li><button>Publica tu Oferta</button></li>
+                            <li><button onClick={handleClick} >{message}</button></li>
                         </ul>
                     </div>
                     <p>Mira nuestra reputacion!</p>
                 </section>
             </main>
-            <aside></aside>
+            
+            <aside className="photo-container">
+                <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-1" />
+                <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-burguer" className="image img-2" />
+            </aside>
 
             <div className={containerClassName}>
                 <section className='card-container'>
