@@ -51,6 +51,7 @@ input {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap:15px;
 }
 
 .show {
@@ -73,7 +74,6 @@ header {
 }
 
 .header-format {
-    display: flex;
     display: flex;
     justify-content: space-around;
 }
@@ -109,16 +109,12 @@ li {
 
 /* ----- Index ------- */
 
-.section-position{
+main {
     display: flex;
 }
 
-.photo-container {
-    position: relative;
-}
-
-.image {
-    position: absolute;
+.photo-container{
+    display: inline-block;
 }
 
 .img-1 {

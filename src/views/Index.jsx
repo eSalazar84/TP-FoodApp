@@ -50,13 +50,13 @@ function Index() {
                     </div>
                     <p>Mira nuestra reputacion!</p>
                 </section>
-            </main>
             
             <aside className="photo-container">
                 <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-1" />
                 <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-burguer" className="image img-2" />
             </aside>
 
+            </main>
             <div className={containerClassName}>
                 <section className='card-container'>
                     <Menus menus={menu} />

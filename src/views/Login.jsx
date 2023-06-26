@@ -36,10 +36,9 @@ function Login() {
         if (checkPass) {
             notificacionRef.current.style.color = 'green';
             notificacionRef.current.innerHTML = "Bienvenido!";
-
         } else {
             notificacionRef.current.style.color = 'red';
-            notificacionRef.current.innerHTML = "Datos Incorrectos";
+            notificacionRef.current.innerHTML = "Credenciales Incorrectas";
         }
 
         e.target.reset()
@@ -55,7 +54,7 @@ function Login() {
             </header>
             <main>
                 <h2>Registrate o ingresá para continuar</h2>
-                <div className='form-box' >
+                {/* <div className='form-box' >
                     <form onSubmit={handleSubmit} className='form-box-style'>
                         <label htmlFor="mail">Correo</label>
                         <input type="email" name="mail" id="mail" required />
@@ -64,7 +63,7 @@ function Login() {
                         <input type="submit" value="Ingresar" className='btnSubmit' />
                         <p id="notificacion" ref={notificacionRef}> </p>
                     </form>
-                </div>
+                </div> */}
                 <div className='form-box'>
                     <form onSubmit={handleSubmit} className='form-box-style'>
                         <div className="mb-3">

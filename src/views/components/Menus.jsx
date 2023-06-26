@@ -21,13 +21,3 @@ function Menus({ menus }) {
 }
 
 export default Menus
-{/* <div key={index} >
-    <div>
-        <img src={menu.foto} />
-        <div>
-            <h5>Menu: {menu.nombre}</h5>
-            <hr />
-            <p>Precio : ${menu.precio}</p>
-        </div>
-    </div>
-</div> */}
