@@ -40,8 +40,10 @@ function Index() {
                     <h3>¡Pedi lo que quieras!</h3>
                     <p>Minutas, comidas gourmet, postres y mucho más.</p>
                     <div>
+                        <ul>
                         <li><button>Publica tu Oferta</button></li>
                         <li><button onClick={handleClick} >{message}</button></li>
+                        </ul>
                     </div>
                     <p>Mira nuestra reputacion!</p>
                 </section>

@@ -2,6 +2,8 @@ import './styles/App.css';
 import Login from "./views/Login.jsx"
 import Index from './views/Index.jsx';
 import { Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {

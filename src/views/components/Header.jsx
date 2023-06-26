@@ -6,12 +6,14 @@ function Header() {
     return (
         <>
             <header>
-                <nav>
                     <h1><Link to={"/Index.jsx"}>Food App</Link> </h1>
                     <div>
-                        <li><button> <Link to={"/Login.jsx"} >Acceder</Link> </button></li>
-                        <li><button>Registra tu negocio</button></li>
+                        <ul>
+                            <li><button> <Link to={"/Login.jsx"} >Acceder</Link> </button></li>
+                            <li><button>Registra tu negocio</button></li>
+                        </ul>
                     </div>
+                <nav>
                 </nav>
             </header>
         </>
