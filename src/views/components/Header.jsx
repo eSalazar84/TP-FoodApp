@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Index from "../Index.jsx";
+
 
 function Header() {
     return (
         <>
-            <header>
+            <header >
+                <nav className="header-format"> 
                     <h1><Link to={"/Index.jsx"}>Food App</Link> </h1>
                     <div>
                         <ul>
@@ -13,7 +14,6 @@ function Header() {
                             <li><button>Registra tu negocio</button></li>
                         </ul>
                     </div>
-                <nav>
                 </nav>
             </header>
         </>

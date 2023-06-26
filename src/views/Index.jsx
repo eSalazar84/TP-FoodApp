@@ -5,23 +5,26 @@ import Menus from "./components/Menus.jsx"
 import { useEffect, useState } from 'react';
 
 function Index() {
-    const [menus, setMenu] = useState([]);
 
-    const [show, setShow] = useState(true);
+    const [menu, setMenu] = useState([]);
 
-    const initialUrl = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
-    const fetchUsers = (url) => {
+    const [show, setShow] = useState(false);
+
+    const BASE_URL = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
+   
+
+    const fetchMenus = (url) => {
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setMenu(data);
-            })
-            .catch(error => console.log(error))
-    };
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+            setMenu(data);
+        })
+        .catch(err => console.log(err))
+    }
 
     useEffect(() => {
-        fetchUsers(initialUrl);
+        fetchMenus(BASE_URL)
     }, []);
 
     const message = show ? "Ocultar Ofertas" : "Ver Ofertas";
@@ -52,7 +55,7 @@ function Index() {
 
             <div className={containerClassName}>
                 <section className='card-container'>
-                    <Menus menus={menus} />
+                    <Menus menus={menu} />
                 </section>
             </div>
             <Footer />
