@@ -39,18 +39,16 @@ function Index() {
         <>
             <Header />
             <main>
+            <div className="description">
                 <section className="section-position">
                     <h3>¡Pedi lo que quieras!</h3>
                     <p>Minutas, comidas gourmet, postres y mucho más.</p>
-                    <div>
-                        <ul>
-                            <li><button>Publica tu Oferta</button></li>
-                            <li><button onClick={handleClick} >{message}</button></li>
-                        </ul>
-                    </div>
-                    <p>Mira nuestra reputacion!</p>
                 </section>
-            
+                <section className="button-position">
+                    <button className="publicar">Publica tu Oferta</button>
+                    <button className="ver" onClick={handleClick} >{message}</button>
+                </section>
+            </div>
             <aside className="photo-container">
                 <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-1" />
                 <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-burguer" className="image img-2" />

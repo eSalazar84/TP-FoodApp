@@ -7,11 +7,11 @@ function Header() {
         <>
             <header >
                 <nav className="header-format"> 
-                    <h1><Link to={"/Index.jsx"}>Food App</Link> </h1>
+                <img src="./src/assets/Food App.svg"/>
                     <div>
                         <ul>
-                            <li><button> <Link to={"/Login.jsx"} >Acceder</Link> </button></li>
-                            <li><button>Registra tu negocio</button></li>
+                            <li><Link to={"/Login.jsx"}><button  className="btn1">Acceder </button></Link></li>
+                            <li><button className="btn2">Registra tu negocio</button></li>
                         </ul>
                     </div>
                 </nav>
