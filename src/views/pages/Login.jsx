@@ -1,8 +1,7 @@
-import '../styles/App.css';
-import Footer from "./components/Footer.jsx";
-import { Link} from "react-router-dom";
+import Footer from "../components/Footer.jsx";
+import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
-const BASE_URL = "https://647a6c7ed2e5b6101db05858.mockapi.io/users";
+const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users";
 
 
 
@@ -11,7 +10,7 @@ function Login() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch(BASE_URL)
+        fetch(users_url)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -36,12 +35,13 @@ function Login() {
         if (checkPass) {
             notificacionRef.current.style.color = 'green';
             notificacionRef.current.innerHTML = "Bienvenido!";
+            window.location = "/";
         } else {
             notificacionRef.current.style.color = 'red';
-            notificacionRef.current.innerHTML = "Credenciales Incorrectas";
+        
         }
 
-        e.target.reset()
+        e.target.reset();
     }
 
     return (
@@ -54,21 +54,11 @@ function Login() {
             </header>
             <main>
                 <h2>Registrate o ingresá para continuar</h2>
-                {/* <div className='form-box' >
-                    <form onSubmit={handleSubmit} className='form-box-style'>
-                        <label htmlFor="mail">Correo</label>
-                        <input type="email" name="mail" id="mail" required />
-                        <label htmlFor="password">Contraseña</label>
-                        <input type="password" name="password" id="password" required />
-                        <input type="submit" value="Ingresar" className='btnSubmit' />
-                        <p id="notificacion" ref={notificacionRef}> </p>
-                    </form>
-                </div> */}
                 <div className='form-box'>
                     <form onSubmit={handleSubmit} className='form-box-style'>
                         <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Correo electrónico</label>
-                            <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" />
+                            <label htmlFor="mail" className="form-label">Correo electrónico</label>
+                            <input type="email" className="form-control" id="mail" name='mail' aria-describedby="emailHelp" />
                             <div id="emailHelp" className="form-text">No compartiremos sus datos con nadie.</div>
                         </div>
                         <div className="mb-3">
@@ -80,6 +70,7 @@ function Login() {
                             <label className="form-check-label" for="exampleCheck1">Recordar mi contraseña</label>
                         </div>
                         <button type="submit" className="btn btn-primary">Enviar</button>
+                        <p id="notificacion" ref={notificacionRef}> </p>
                     </form>
                 </div>
             </main>

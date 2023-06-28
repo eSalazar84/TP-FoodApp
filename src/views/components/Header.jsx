@@ -10,8 +10,8 @@ function Header() {
                 <img src="./src/assets/Food App.svg"/>
                     <div>
                         <ul>
-                            <li><Link to={"/Login.jsx"}><button  className="btn1">Acceder </button></Link></li>
-                            <li><button className="btn2">Registra tu negocio</button></li>
+                            <li><Link to={"/Login.jsx"}><button  className="btn1">Acceder</button></Link></li>
+                            <li><Link to={"/Register.jsx"} ><button className="btn2">Registra tu negocio</button></Link></li>
                         </ul>
                     </div>
                 </nav>

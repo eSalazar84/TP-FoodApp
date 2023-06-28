@@ -1,16 +1,15 @@
-import Footer from "./components/Footer.jsx";
-import Header from "./components/Header.jsx";
-import Menus from "./components/Menus.jsx"
+import Footer from "../components/Footer.jsx";
+import Header from "../components/Header.jsx";
+import Menus from "../components/Menus.jsx"
 // importarlos -useEffect -useState
 import { useEffect, useState } from 'react';
+const menu_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
 
 function Index() {
 
     const [menu, setMenu] = useState([]);
 
     const [show, setShow] = useState(false);
-
-    const BASE_URL = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
 
 
     const fetchMenus = (url) => {
@@ -24,7 +23,7 @@ function Index() {
     }
 
     useEffect(() => {
-        fetchMenus(BASE_URL)
+        fetchMenus(menu_url)
     }, []);
 
     const message = show ? "Ocultar Ofertas" : "Ver Ofertas";
