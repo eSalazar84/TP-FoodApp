@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer.jsx";
+import  HeaderLogin from "../components/HeaderLogin.jsx"
+import  Footer from "../components/Footer.jsx";
 
 
 const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users";
@@ -16,25 +16,18 @@ function Register() {
 
     const notificacionRef = useRef("");
 
-
     function handleChange(e) {
         setUsers((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
         }));
     }
-    
+
     function handleSubmit(e) {
         e.preventDefault();
-        //const checkRepeat = users.find(user => user.mail === users.target.mail)
-        //if (checkRepeat) {
-        //    notificacionRef.current.innerHTML = "Ya existe ese mail";
-        //} else {
-            addOne(users);
-        //}
-        console.log(users);
+        addOne(users);
+        window.location = "/";
         e.target.reset();
-        console.log(users);
     }
 
     function addOne(users) {
@@ -53,12 +46,7 @@ function Register() {
 
     return (
         <>
-            <header>
-                <nav>
-                    <div><Link to={"/Index.jsx"}>Volver</Link></div>
-                    <h1><Link to={"/Index.jsx"}>Food App</Link> </h1>
-                </nav>
-            </header>
+            <HeaderLogin />
             <div>
                 <h3>Formulario de Registro</h3>
                 <form id="registroNuevoUsuario" onSubmit={handleSubmit}>
@@ -73,7 +61,7 @@ function Register() {
                         <input type="email" id="mail" name="mail" required aria-required="true"
                             onChange={handleChange}
                         />
-                        <span id="notificacion" ref={notificacionRef}></span> 
+                        <span id="notificacion" ref={notificacionRef}></span>
                     </label>
                     <label htmlFor="phone">
                         Telefono:

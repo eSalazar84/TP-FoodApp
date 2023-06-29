@@ -1,9 +1,11 @@
 import './styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./views/pages/Login.jsx"
 import Index from './views/pages/Index.jsx';
-import { Routes, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './views/pages/Register.jsx';
+import Us from './views/pages/Us.jsx';
+import LoadOffer from './views/pages/LoadOffer.jsx';
+import { Routes, Route } from "react-router-dom";
 
 
 
@@ -11,12 +13,13 @@ function App() {
 
   return (
     <>
-    <Routes>
-      <Route exact path='/Index.jsx' element={<Index/>} />
-      <Route exact path='/Login.jsx' element={<Login/>} />
-      <Route exact path='/Register.jsx' element={<Register/>} />
-      <Route exact path='/' element={<Index/>} />
-    </Routes>
+      <Routes>
+        <Route exact path='/' element={<Index />} />
+        <Route exact path='/Login.jsx' element={<Login />} />
+        <Route exact path='/Register.jsx' element={<Register />} />
+        <Route exact path='/Us.jsx' element={<Us />} />
+        <Route exact path='/LoadOffer.jsx' element={<LoadOffer />} />
+      </Routes>
     </>
   )
 }

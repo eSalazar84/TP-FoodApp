@@ -1,4 +1,5 @@
-import { React } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -9,7 +10,7 @@ function Footer() {
                     <p>Es un sistema de pedidos donde el principal fuerte es clasificar las mejores ofertas de los locales.</p>
                 </div>
                 <div className="center-position">
-                    <p>Quiénes Somos</p>
+                    <p><Link to={"/Us.jsx"} >Quiénes Somos</Link></p>
                     <p>Copyright 2023 - @FoodApp</p>
                 </div>
                 <div className="ul-position">

@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
-import Menus from "../components/Menus.jsx"
-// importarlos -useEffect -useState
+import Menus from "../components/Menus.jsx";
+
 import { useEffect, useState } from 'react';
+
 const menu_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
 
 function Index() {
@@ -38,20 +40,20 @@ function Index() {
         <>
             <Header />
             <main>
-            <div className="description">
-                <section className="section-position">
-                    <h3>¡Pedi lo que quieras!</h3>
-                    <p>Minutas, comidas gourmet, postres y mucho más.</p>
-                </section>
-                <section className="button-position">
-                    <button className="publicar">Publica tu Oferta</button>
-                    <button className="ver" onClick={handleClick} >{message}</button>
-                </section>
-            </div>
-            <aside className="photo-container">
-                <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-1" />
-                <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-burguer" className="image img-2" />
-            </aside>
+                <div className="description">
+                    <section className="section-position">
+                        <h3>¡Pedi lo que quieras!</h3>
+                        <p>Minutas, comidas gourmet, postres y mucho más.</p>
+                    </section>
+                    <section className="button-position">
+                        <button className="publicar"><Link to={"/Login.jsx"} >Publica tu Oferta</Link></button>
+                        <button className="ver" onClick={handleClick} >{message}</button>
+                    </section>
+                </div>
+                <aside className="photo-container">
+                    <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-1" />
+                    <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-burguer" className="image img-2" />
+                </aside>
 
             </main>
             <div className={containerClassName}>
