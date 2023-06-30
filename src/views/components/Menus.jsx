@@ -9,8 +9,8 @@ function Menus({ menus }) {
                     <div className="card"  key={index}>
                         <img src={menu.foto} className="card-img-top" alt="photo-menu" />
                         <div className="card-body">
-                            <h5 className="card-title">Menu: {menu.nombre}</h5>
-                            <p className="card-text">Precio: ${menu.precio} </p>
+                            <h5 className="card-title">{menu.nombre}</h5>
+                            <p className="card-text">${menu.precio} </p>
                             <a href="#" className="btn btn-primary">Ir a algún lugar</a>
                         </div>
                     </div>

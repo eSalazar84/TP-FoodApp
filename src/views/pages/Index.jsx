@@ -3,11 +3,14 @@ import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 import Menus from "../components/Menus.jsx";
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from "../../UserContext.jsx";
 
 const menu_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
 
 function Index() {
+
+    const { user } = useContext(UserContext)
 
     const [menu, setMenu] = useState([]);
 
@@ -46,8 +49,17 @@ function Index() {
                         <p>Minutas, comidas gourmet, postres y mucho más.</p>
                     </section>
                     <section className="button-position">
-                        <button className="publicar"><Link to={"/Login.jsx"} >Publica tu Oferta</Link></button>
-                        <button className="ver" onClick={handleClick} >{message}</button>
+                        {user ? (
+                            <div>
+                                <button className="publicar"><Link to={"/LoadOffer.jsx"} >Publica tu Oferta</Link></button>
+                                <button className="ver" onClick={handleClick} >{message}</button>
+                            </div>
+                        ) : (
+                            <div>
+                                <button className="publicar"><Link to={"/Login.jsx"} >Publica tu Oferta</Link></button>
+                                <button className="ver" onClick={handleClick} >{message}</button>
+                            </div>
+                        )}
                     </section>
                 </div>
                 <aside className="photo-container">

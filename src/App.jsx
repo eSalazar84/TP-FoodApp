@@ -7,19 +7,21 @@ import Us from './views/pages/Us.jsx';
 import LoadOffer from './views/pages/LoadOffer.jsx';
 import { Routes, Route } from "react-router-dom";
 
-
+import { UserProvider } from './UserContext';
 
 function App() {
 
   return (
     <>
-      <Routes>
-        <Route exact path='/' element={<Index />} />
-        <Route exact path='/Login.jsx' element={<Login />} />
-        <Route exact path='/Register.jsx' element={<Register />} />
-        <Route exact path='/Us.jsx' element={<Us />} />
-        <Route exact path='/LoadOffer.jsx' element={<LoadOffer />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route exact path='/' element={<Index />} />
+          <Route exact path='/Login.jsx' element={<Login />} />
+          <Route exact path='/Register.jsx' element={<Register />} />
+          <Route exact path='/Us.jsx' element={<Us />} />
+          <Route exact path='/LoadOffer.jsx' element={<LoadOffer />} />
+        </Routes>
+      </UserProvider>
     </>
   )
 }
