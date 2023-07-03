@@ -44,7 +44,9 @@ function Login() {
         <>
             <Header />
             <main>
+            <div className="registration">
                 <h2>Registrate o ingresá para continuar</h2>
+                 </div>
                 <div className='form-box'>
                     <form onSubmit={handleSubmit} className='form-box-style'>
                         <div className="mb-3">
@@ -70,6 +72,9 @@ function Login() {
                     </form>
                 </div>
             </main>
+            <aside className="photo-container2">
+                    <img src="https://images.pexels.com/photos/139681/pexels-photo-139681.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-login" />
+                </aside>
             <Footer />
         </>
     )

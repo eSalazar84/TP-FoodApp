@@ -7,7 +7,7 @@ function Footer() {
             <footer className="show-footer">
                 <div>
                     <h4>Food App</h4>
-                    <p>Es un sistema de pedidos donde el principal fuerte es clasificar las mejores ofertas de los locales.</p>
+                    <p>Es un sistema de pedidos donde el principal fuerte</p> <p>es clasificar las mejores ofertas de los locales.</p>
                 </div>
                 <div className="center-position">
                     <p><Link to={"/Us.jsx"} >Quiénes Somos</Link></p>

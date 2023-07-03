@@ -5,18 +5,18 @@ body {
 
 .form-box {
     display: flex;
-    align-items: flex-start;
-    align-content: space-around;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
+    margin: 0;
 }
 
 .form-box-style {
-    border: 2px solid black;
-    border-radius: 4px;
+    background-color: #FFFFFF;
+    border: 2px solid rgb(230, 230, 230);
+    border-radius: 8px;
     padding: 50px;
-    margin-left: 100px;
-    margin-right: 100px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4);
 }
 
 input {
@@ -48,12 +48,19 @@ input {
 }
 
 /* ----- Cards ------- */
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+}
+
 .card-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
+    margin-top: 400px;
 }
 
 .show {
@@ -65,7 +72,20 @@ input {
 }
 
 .card {
-    width: 28rem;
+    width: 300px;
+    height: 300px;
+}
+
+.listado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listadover {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 0px;
 }
 
 /* ----- Header ------- */
@@ -84,9 +104,11 @@ header {
 
 .show-footer {
     display: flex;
+    color: #FFFFFF;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
+    margin-top: 500px;
 }
 
 .center-position {
@@ -111,17 +133,21 @@ ul li {
 }
 
 .btn1 {
-    background: #ffffff;
+    background: transparent;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
     border-radius: 15px;
+    border-width: 3px;
+    border-style: solid;
     width: 173px;
     font: 700 16px "Poppins", sans-serif;
     height: 58px;
     position: relative;
+
 }
 
 .btn2 {
-    background-color: transparent;
-    color: #FFFFFF;
+    color: #000000;
     font: 700 16px "Poppins", sans-serif;
     border-radius: 15px;
     border-style: solid;
@@ -132,9 +158,10 @@ ul li {
     position: relative;
 }
 
-.btn2:hover {
+.btn1:hover {
     background: #FFFFFF;
     color: #000000;
+    transform: scale(1.05);
 }
 
 /* ----- Index ------- */
@@ -164,6 +191,7 @@ main {
     right: 200px;
     top: 200px;
     object-fit: cover;
+    animation: slideInRight 1s ease-in-out;
 }
 
 .img-2 {
@@ -175,13 +203,42 @@ main {
     width: 500px;
     height: 320px;
     position: relative;
+    animation: fadeIn 1s ease-in-out;
 }
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 
 .section-position {
     color: #ffffff;
     text-align: left;
-    font: 600 30px "Poppins", sans-serif;
+    font: 100 24px "Poppins", sans-serif;
     position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.section-position h3 {
+    font: 600 34px "Poppins", sans-serif;
 }
 
 .ver {
@@ -195,11 +252,13 @@ main {
     position: relative;
     font: 600 20px "Poppins", sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .ver:hover {
     background: #FFFFFF;
     color: #000000;
+    transform: scale(1.05);
 }
 
 .publicar {
@@ -211,4 +270,77 @@ main {
     position: relative;
     margin-right: 25px;
     font: 600 20px "Poppins", sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animación fadeIn */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.img-login {
+    display: flex;
+    width: 500px;
+    height: 400px;
+    border-radius: 15px;
+    margin-top: -350px;
+    margin-left: 260px;
+    animation: slideIn 1s ease-in-out;
+}
+
+.registration {
+    color: #FFFFFF;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reputation {
+    margin-right: 250px;
+    margin-top: 50px;
+    color: #FFFFFF;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.reputation h3 {
+    font-weight: bold;
+}
+
+.reputation p {
+    font-weight: normal;
+}
+
+.reputation p::before {
+    content: "★★★★ ";
+    color: yellow;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

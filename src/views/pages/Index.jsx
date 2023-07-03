@@ -13,15 +13,12 @@ function Index() {
     const { user } = useContext(UserContext)
 
     const [menu, setMenu] = useState([]);
-
     const [show, setShow] = useState(false);
-
 
     const fetchMenus = (url) => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setMenu(data);
             })
             .catch(err => console.log(err))
@@ -32,7 +29,6 @@ function Index() {
     }, []);
 
     const message = show ? "Ocultar Ofertas" : "Ver Ofertas";
-
     const containerClassName = show ? 'show' : 'hide';
 
     const handleClick = () => {
@@ -51,14 +47,19 @@ function Index() {
                     <section className="button-position">
                         {user ? (
                             <div>
-                                <button className="publicar"><Link to={"/LoadOffer.jsx"} >Publica tu Oferta</Link></button>
-                                <button className="ver" onClick={handleClick} >{message}</button>
+                                <button className="publicar"><Link to={"/LoadOffer.jsx"}>Publica tu Oferta</Link></button>
+                                <button className="ver" onClick={handleClick}>{message}</button>
                             </div>
                         ) : (
                             <div>
-                                <button className="publicar"><Link to={"/Login.jsx"} >Publica tu Oferta</Link></button>
-                                <button className="ver" onClick={handleClick} >{message}</button>
+                                <button className="publicar"><Link to={"/Login.jsx"}>Publica tu Oferta</Link></button>
+                                <button className="ver" onClick={handleClick}>{message}</button>
+                                <section className="reputation">
+                                    <h3>¡Mira nuestra reputación!</h3>
+                                    <p>4.9 (1.3k de opiniones)</p>
+                                </section>
                             </div>
+
                         )}
                     </section>
                 </div>
@@ -66,9 +67,15 @@ function Index() {
                     <img src="https://images.pexels.com/photos/1633525/pexels-photo-1633525.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-1" />
                     <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-burguer" className="image img-2" />
                 </aside>
-
             </main>
             <div className={containerClassName}>
+                <div className="listado">
+                    <section className="listadover">
+                        <h3>¡Pedi lo que quieras!</h3>
+                        <p>Minutas, comidas gourmet, postres y mucho más.</p>
+                    </section>
+
+                </div>
                 <section className='card-container'>
                     <Menus menus={menu} />
                 </section>
@@ -78,4 +85,4 @@ function Index() {
     )
 }
 
-export default Index
+export default Index;
