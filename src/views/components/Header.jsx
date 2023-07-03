@@ -14,7 +14,7 @@ function Header() {
                         user ? (
                             <div>
                                 <ul>
-                                    <li>Bienvenido, {user.name} </li>
+                                    <li>Bienvenid@, {user.name} </li>
                                     <li><Link to={"/Register.jsx"}><button className="btn1">Modificar datos</button></Link></li >
                                     <li><button className="btn2" onClick={handleLogout}>Cerrar sesion</button></li>
                                 </ul >

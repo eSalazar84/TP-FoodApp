@@ -13,10 +13,11 @@ function Register() {
     console.log(user);
 
     const [users, setUsers] = useState({
-        name: "",
+        id: "",
         mail: "",
-        phone: "",
-        password: ""
+        name: "",
+        password: "",
+        phone: ""
     });
 
     const [message, setMessage] = useState("");
@@ -33,8 +34,8 @@ function Register() {
     function handleSubmit(e) {
         e.preventDefault();
         addOne(users);
-        window.location = "/";
-        e.target.reset();
+        //window.location = "/";
+        //e.target.reset();
     }
 
     function addOne(users) {
@@ -49,6 +50,23 @@ function Register() {
                 setUsers(user)
             })
             .catch(err => console.error(err));
+    }
+
+    function deleteOne(user) {
+        fetch(`${users_url}${user.id}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then(data => {
+                deleteUser(data)
+            })
+            .catch(err => console.error(err));
+    }
+
+    function deleteUser(user) {
+        deleteOne(user);
+        window.location = "/"
+
     }
 
     return (
@@ -86,6 +104,7 @@ function Register() {
                             </label>
                             <div>
                                 <button type="submit">Actualizar Datos</button>
+                                <button onClick={() => deleteUser(user)} >Eliminar Usuario</button>
                                 <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
                             </div>
                         </form>
