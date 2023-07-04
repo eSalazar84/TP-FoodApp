@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef, useContext } from "react";
+import { UserContext } from "../../UserContext.jsx";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
-import { Link } from "react-router-dom";
 
-import { UserContext } from "../../UserContext.jsx";
-
-const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users";
+const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users/";
 
 function Register() {
 
     const { user } = useContext(UserContext);
-    console.log(user);
+
+    const { handleLogOut } = useContext(UserContext);
 
     const [users, setUsers] = useState({
         id: "",
@@ -31,42 +31,61 @@ function Register() {
         }));
     }
 
-    function handleSubmit(e) {
+    function handleAddSubmit(e) {
         e.preventDefault();
-        addOne(users);
-        //window.location = "/";
-        //e.target.reset();
+        console.log(users);
+        /* addOne(users);
+        window.location = "/";
+        e.target.reset(); */
     }
 
-    function addOne(users) {
+    function handleEditSubmit(e) {
+        e.preventDefault();
+        updateOne(users.id, users);
+        window.location = "/";
+        e.target.reset();
+    }
+
+    function addOne(adduser) {
         fetch(users_url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(users),
+            body: JSON.stringify(adduser),
         })
             .then(res => res.json())
-            .then(user => {
-                console.log(user);
-                setUsers(user)
+            .then(data => {
+                console.log(data);
+                setUsers(data)
             })
             .catch(err => console.error(err));
     }
 
-    function deleteOne(user) {
-        fetch(`${users_url}${user.id}`, {
+    function updateOne(id, updateUser) {
+        fetch(`${users_url}${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updateUser),
+        })
+            .then((res) => res.json())
+            .catch((err) => console.error(err));
+    }
+
+    function updateUser() {
+        updateOne(users.id, users);
+    }
+
+    function deleteOne(users) {
+        fetch(`${users_url}${users.id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
-            .then(data => {
-                deleteUser(data)
-            })
+            .then(data => console.log(data))
             .catch(err => console.error(err));
     }
 
-    function deleteUser(user) {
-        deleteOne(user);
+    function deleteUser(users) {
+        deleteOne(users);
         window.location = "/"
-
     }
 
     return (
@@ -76,7 +95,7 @@ function Register() {
                 {user ? (
                     <div>
                         <h3>Formulario de Registro</h3>
-                        <form id="registroNuevoUsuario" onSubmit={handleSubmit}>
+                        <form id="registroNuevoUsuario" onSubmit={handleEditSubmit}>
                             <label htmlFor="name">
                                 Nombre:
                                 <input type="text" id="name" name="name" required defaultValue={user.name}
@@ -103,8 +122,8 @@ function Register() {
                                 />
                             </label>
                             <div>
-                                <button type="submit">Actualizar Datos</button>
-                                <button onClick={() => deleteUser(user)} >Eliminar Usuario</button>
+                                <button type="submit" onClick={updateUser} >Actualizar Datos</button>
+                                <button onClick={deleteUser} >Eliminar Usuario</button>
                                 <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
                             </div>
                         </form>
@@ -113,7 +132,7 @@ function Register() {
                     <div>
 
                         <h3>Formulario de Registro</h3>
-                        <form id="registroNuevoUsuario" onSubmit={handleSubmit}>
+                        <form id="registroNuevoUsuario" onSubmit={handleAddSubmit}>
                             <label htmlFor="name">
                                 Nombre:
                                 <input type="text" id="name" name="name" required

@@ -1,16 +1,12 @@
 import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-import { UserContext } from "../../UserContext";
-
-const menu_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu";
+const menu_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu/";
 
 function LoadOffer() {
-
-    const { user } = useContext(UserContext)
 
     const [menu, setMenu] = useState({
         foto: "",
@@ -18,7 +14,20 @@ function LoadOffer() {
         precio: ""
     })
 
-    const [message, setMessage] = useState("");
+    const addOne = (menu) => {
+        fetch(menu_url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(menu),
+        })
+            .then(res => res.json())
+            .then(menu => {
+                console.log(menu);
+                setMenu(menu);
+                window.location = "/"
+            })
+            .catch(err => console.error(err));
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -30,25 +39,6 @@ function LoadOffer() {
             ...prev,
             [e.target.name]: e.target.value
         }));
-    }
-
-    useEffect(() => {
-        addOne(menu_url)
-    }, []);
-
-    const addOne = (menu) => {
-        fetch(menu_url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(menu),
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setMenu(data);
-                window.location = "/"
-            })
-            .catch(err => console.error(err));
     }
 
     return (
@@ -68,7 +58,6 @@ function LoadOffer() {
                         <input type="text" id="nombre" name="nombre" required
                             onChange={handleChange}
                         />
-                        <span>{message && <p>message</p>}</span>
                     </label>
                     <label htmlFor="precio">
                         Precio:

@@ -1,18 +1,19 @@
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from "../../UserContext.jsx";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
-import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from 'react';
-
-import { UserContext } from "../../UserContext.jsx";
 
 const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users";
 
 function Login() {
 
-    let { handleLogin } = useContext(UserContext);
+    const { handleLogin } = useContext(UserContext);
 
-    const [mail, setMail] = useState("");
-    const [password, setPassword] = useState("");
+    const [logIn, setLogIn] = useState({
+        mail: "",
+        password: ""
+    })
 
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
@@ -30,7 +31,7 @@ function Login() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        const user = users.find(u => u.mail === mail && u.password === password);
+        const user = users.find(u => u.mail === logIn.mail && u.password === logIn.password);
 
         if (user) {
             setMessage("Bienvenido!!")
@@ -40,26 +41,34 @@ function Login() {
         }
     }
 
+    function handleChange(e) {
+        console.log(logIn);
+        setLogIn((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    }
+
     return (
         <>
             <Header />
             <main>
-            <div className="registration">
-                <h2>Registrate o ingresá para continuar</h2>
-                 </div>
+                <div className="registration">
+                    <h2>Registrate o ingresá para continuar</h2>
+                </div>
                 <div className='form-box'>
                     <form onSubmit={handleSubmit} className='form-box-style'>
                         <div className="mb-3">
                             <label htmlFor="mail" className="form-label">Correo electrónico</label>
                             <input type="email" className="form-control" id="mail" name="mail" required
-                                onChange={(e) => setMail(e.target.value)}
+                                onChange={handleChange}
                             />
                             <div id="emailHelp" className="form-text">No compartiremos sus datos con nadie.</div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label">Contraseña</label>
                             <input type="password" className="form-control" id="password" name="password" required
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="mb-3 form-check">
@@ -73,8 +82,8 @@ function Login() {
                 </div>
             </main>
             <aside className="photo-container2">
-                    <img src="https://images.pexels.com/photos/139681/pexels-photo-139681.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-login" />
-                </aside>
+                <img src="https://images.pexels.com/photos/139681/pexels-photo-139681.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="photo-sandwich" className="image img-login" />
+            </aside>
             <Footer />
         </>
     )
