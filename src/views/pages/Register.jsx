@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../UserContext.jsx";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
@@ -10,19 +10,36 @@ function Register() {
 
     const { user } = useContext(UserContext);
 
-    const { handleLogOut } = useContext(UserContext);
+    const { handleLogout } = useContext(UserContext);
 
     const [users, setUsers] = useState({
-        id: "",
-        mail: "",
         name: "",
-        password: "",
-        phone: ""
+        mail: "",
+        phone: "",
+        password: ""
     });
 
-    const [message, setMessage] = useState("");
+    //-------------- Agregar un nuevo User -------------------//
 
-    const notificacionRef = useRef("");
+    const addOne = (addUser) => {
+        fetch(users_url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(addUser)
+        })
+            .then((res) => res.json())
+            .then(data => {
+                console.log(data);
+                setUsers(data)
+                window.location = "/";
+            })
+            .catch(err => console.error(err))
+    }
+
+    const handleAddSubmit = (e) => {
+        e.preventDefault();
+        addOne(users);
+    }
 
     function handleChange(e) {
         setUsers((prev) => ({
@@ -31,61 +48,62 @@ function Register() {
         }));
     }
 
-    function handleAddSubmit(e) {
-        e.preventDefault();
-        console.log(users);
-        /* addOne(users);
-        window.location = "/";
-        e.target.reset(); */
-    }
+    //-------------- Editar un User existente -------------------//
 
-    function handleEditSubmit(e) {
-        e.preventDefault();
-        updateOne(users.id, users);
-        window.location = "/";
-        e.target.reset();
-    }
+    const [editUsers, setEditUsers] = useState({
+        name: "",
+        mail: "",
+        phone: "",
+        password: ""
+    });
 
-    function addOne(adduser) {
-        fetch(users_url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(adduser),
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setUsers(data)
-            })
-            .catch(err => console.error(err));
-    }
-
-    function updateOne(id, updateUser) {
-        fetch(`${users_url}${id}`, {
+    const editOne = (id, updateUser) => {
+        fetch(users_url + `${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updateUser),
+            body: JSON.stringify(updateUser)
         })
             .then((res) => res.json())
-            .catch((err) => console.error(err));
+            .then(data => {
+                console.log(data);
+                setEditUsers(data);
+                window.location = "/";
+                handleLogout();
+            })
+            .catch(err => console.error(err))
     }
 
-    function updateUser() {
-        updateOne(users.id, users);
+    const handleEditSubmit = (e) => {
+        e.preventDefault();
+        editOne(user.id, editUsers);
     }
 
-    function deleteOne(users) {
-        fetch(`${users_url}${users.id}`, {
-            method: "DELETE",
+    function handleEditChange(e) {
+        e.preventDefault();
+        console.log(editUsers);
+        setEditUsers(((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        })));
+    }
+
+    //-------------- Eliminar un User del registro -------------------//
+
+    const deleteOne = (user) => {
+        fetch(users_url + `${user.id}`, {
+            method: "DELETE"
         })
             .then((res) => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(err));
+            .then(data => {
+                console.log(data);
+                window.location = "/";
+                handleLogout();
+            })
     }
 
-    function deleteUser(users) {
-        deleteOne(users);
-        window.location = "/"
+    function deleteUser(e) {
+        e.preventDefault();
+        deleteOne(user);
     }
 
     return (
@@ -95,34 +113,34 @@ function Register() {
                 {user ? (
                     <div>
                         <h3>Formulario de Registro</h3>
+                        <p>Por favor, complete todos los campos antes de editar sus datos.</p>
                         <form id="registroNuevoUsuario" onSubmit={handleEditSubmit}>
                             <label htmlFor="name">
                                 Nombre:
                                 <input type="text" id="name" name="name" required defaultValue={user.name}
-                                    onChange={handleChange}
+                                    onChange={handleEditChange}
                                 />
                             </label>
                             <label htmlFor="mail">
                                 Email:
                                 <input type="email" id="mail" name="mail" required defaultValue={user.mail}
-                                    onChange={handleChange}
+                                    onChange={handleEditChange}
                                 />
-                                <span>{message && <p>message</p>}</span>
                             </label>
                             <label htmlFor="phone">
                                 Telefono:
                                 <input type="tel" id="phone" name="phone" required defaultValue={user.phone}
-                                    onChange={handleChange}
+                                    onChange={handleEditChange}
                                 />
                             </label>
                             <label htmlFor="password">
                                 Contraseña:
                                 <input type="password" id="password" name="password" required defaultValue={user.password}
-                                    onChange={handleChange}
+                                    onChange={handleEditChange}
                                 />
                             </label>
                             <div>
-                                <button type="submit" onClick={updateUser} >Actualizar Datos</button>
+                                <button type="submit">Actualizar Datos</button>
                                 <button onClick={deleteUser} >Eliminar Usuario</button>
                                 <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
                             </div>
@@ -144,7 +162,6 @@ function Register() {
                                 <input type="email" id="mail" name="mail" required
                                     onChange={handleChange}
                                 />
-                                <span id="notificacion" ref={notificacionRef}></span>
                             </label>
                             <label htmlFor="phone">
                                 Telefono:
