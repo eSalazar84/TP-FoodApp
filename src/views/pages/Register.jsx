@@ -3,6 +3,7 @@ import { UserContext } from "../../UserContext.jsx";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
+import Swal from 'sweetalert2'
 
 const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users/";
 
@@ -38,6 +39,27 @@ function Register() {
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
+        let timerInterval
+        Swal.fire({
+            title: 'Bienvenido a <img src="./src/assets/Food App.svg" />!',
+            html: 'Espera un momento, seras redirigido....',
+            timer: 6000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
         addOne(users);
     }
 
@@ -75,7 +97,20 @@ function Register() {
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
-        editOne(user.id, editUsers);
+        Swal.fire({
+            title: 'Estas seguro de guardar los cambios?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            denyButtonText: `Descartar`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Cambios Guardados! &#128526', '', 'success')
+                editOne(user.id, editUsers);
+            } else if (result.isDenied) {
+                Swal.fire('Tus datos no sufrieron cambios', '', 'info')
+            }
+        })
     }
 
     function handleEditChange(e) {
@@ -103,7 +138,41 @@ function Register() {
 
     function deleteUser(e) {
         e.preventDefault();
-        deleteOne(user);
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Estas seguro?',
+            text: "Esta acción no se puede revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Dar de baja mi cuenta',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'Cuenta Eliminada!',
+                    'Tu cuenta a sido eliminada del sistema',
+                    'success'
+                )
+                deleteOne(user);
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Operación Cancelada',
+                    'Seguis conservando tu cuenta &#128522',
+                    'error'
+                )
+            }
+        })
+
     }
 
     return (
@@ -141,7 +210,7 @@ function Register() {
                             </label>
                             <div>
                                 <button type="submit">Actualizar Datos</button>
-                                <button onClick={deleteUser} >Eliminar Usuario</button>
+                                <button onClick={deleteUser} >Eliminar Cuenta</button>
                                 <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
                             </div>
                         </form>
