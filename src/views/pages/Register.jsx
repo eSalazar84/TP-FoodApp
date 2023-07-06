@@ -72,18 +72,13 @@ function Register() {
 
     //-------------- Editar un User existente -------------------//
 
-    const [editUsers, setEditUsers] = useState({
-        name: "",
-        mail: "",
-        phone: "",
-        password: ""
-    });
+    const [editUsers, setEditUsers] = useState({});
 
-    const editOne = (id, updateUser) => {
+    const editOne = (id, editUsers) => {
         fetch(users_url + `${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updateUser)
+            body: JSON.stringify(editUsers)
         })
             .then((res) => res.json())
             .then(data => {
@@ -172,7 +167,6 @@ function Register() {
                 )
             }
         })
-
     }
 
     return (
