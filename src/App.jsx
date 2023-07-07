@@ -5,6 +5,7 @@ import Index from './views/pages/Index.jsx';
 import Register from './views/pages/Register.jsx';
 import Us from './views/pages/Us.jsx';
 import LoadOffer from './views/pages/LoadOffer.jsx';
+import Contact from './views/components/Contact';
 import { Routes, Route } from "react-router-dom";
 
 import { UserProvider } from './UserContext';
@@ -20,6 +21,7 @@ function App() {
           <Route exact path='/Register.jsx' element={<Register />} />
           <Route exact path='/Us.jsx' element={<Us />} />
           <Route exact path='/LoadOffer.jsx' element={<LoadOffer />} />
+          <Route exact path='/Contact.jsx' element={<Contact />} />
         </Routes>
       </UserProvider>
     </>

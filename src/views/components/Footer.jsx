@@ -11,6 +11,7 @@ function Footer() {
                 </div>
                 <div className="center-position">
                     <p><Link to={"/Us.jsx"} >Quiénes Somos</Link></p>
+                    <p><Link to={"/Contact.jsx"} >Contactanos</Link></p>
                     <p>Copyright 2023 - @FoodApp</p>
                 </div>
                 <div className="ul-position">

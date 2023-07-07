@@ -252,7 +252,7 @@ main {
     position: relative;
     font: 600 20px "Poppins", sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out; 
 }
 
 .ver:hover {
