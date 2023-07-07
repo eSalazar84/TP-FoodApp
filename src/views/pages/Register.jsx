@@ -10,6 +10,7 @@ const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users/";
 function Register() {
 
     const { user } = useContext(UserContext);
+    console.log(user);
 
     const { handleLogout } = useContext(UserContext);
 
@@ -41,7 +42,7 @@ function Register() {
         e.preventDefault();
         let timerInterval
         Swal.fire({
-            title: 'Bienvenido a <img src="./src/assets/Food App.svg" />!',
+            title: 'Bienvenido a <img src="./src/assets/Food App.svg" />',
             html: 'Espera un momento, seras redirigido....',
             timer: 6000,
             timerProgressBar: true,
@@ -73,6 +74,7 @@ function Register() {
     //-------------- Editar un User existente -------------------//
 
     const [editUsers, setEditUsers] = useState({});
+    console.log(editUsers);
 
     const editOne = (id, editUsers) => {
         fetch(users_url + `${id}`, {
@@ -171,84 +173,126 @@ function Register() {
 
     return (
         <>
-            <Header />
-            <main>
-                {user ? (
-                    <div>
-                        <h3>Formulario de Registro</h3>
-                        <p>Por favor, complete todos los campos antes de editar sus datos.</p>
-                        <form id="registroNuevoUsuario" onSubmit={handleEditSubmit}>
-                            <label htmlFor="name">
-                                Nombre:
-                                <input type="text" id="name" name="name" required defaultValue={user.name}
-                                    onChange={handleEditChange}
-                                />
-                            </label>
-                            <label htmlFor="mail">
-                                Email:
-                                <input type="email" id="mail" name="mail" required defaultValue={user.mail}
-                                    onChange={handleEditChange}
-                                />
-                            </label>
-                            <label htmlFor="phone">
-                                Telefono:
-                                <input type="tel" id="phone" name="phone" required defaultValue={user.phone}
-                                    onChange={handleEditChange}
-                                />
-                            </label>
-                            <label htmlFor="password">
-                                Contraseña:
-                                <input type="password" id="password" name="password" required defaultValue={user.password}
-                                    onChange={handleEditChange}
-                                />
-                            </label>
-                            <div>
-                                <button type="submit">Actualizar Datos</button>
-                                <button onClick={deleteUser} >Eliminar Cuenta</button>
-                                <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
-                            </div>
-                        </form>
-                    </div>
-                ) : (
-                    <div>
-
-                        <h3>Formulario de Registro</h3>
-                        <form id="registroNuevoUsuario" onSubmit={handleAddSubmit}>
-                            <label htmlFor="name">
-                                Nombre:
-                                <input type="text" id="name" name="name" required
-                                    onChange={handleChange}
-                                />
-                            </label>
-                            <label htmlFor="mail">
-                                Email:
-                                <input type="email" id="mail" name="mail" required
-                                    onChange={handleChange}
-                                />
-                            </label>
-                            <label htmlFor="phone">
-                                Telefono:
-                                <input type="tel" id="phone" name="phone" required
-                                    onChange={handleChange}
-                                />
-                            </label>
-                            <label htmlFor="password">
-                                Contraseña:
-                                <input type="text" id="password" name="password" required
-                                    onChange={handleChange}
-                                />
-                            </label>
-                            <div>
-                                <button type="submit">Registrarse</button>
-                                <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
-                            </div>
-                        </form>
-                    </div>
-                )}
-            </main>
-            <Footer />
+          <Header />
+          <main>
+            {user ? (
+              <div>
+                <h3 className="register-heading">Actualiza tus datos</h3>
+                <p className="register-description">Acá podés modificar los datos de tu cuenta</p>
+                <form id="registroactualizar" onSubmit={handleEditSubmit}>
+                  <label htmlFor="name">
+                    Nombre:
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      defaultValue={user.name}
+                      onChange={handleEditChange}
+                    />
+                  </label>
+                  <label htmlFor="mail">
+                    Email:
+                    <input
+                      type="email"
+                      id="mail"
+                      name="mail"
+                      required
+                      defaultValue={user.mail}
+                      onChange={handleEditChange}
+                    />
+                  </label>
+                  <label htmlFor="phone">
+                    Telefono:
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      defaultValue={user.phone}
+                      onChange={handleEditChange}
+                    />
+                  </label>
+                  <label htmlFor="password">
+                    Contraseña:
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                      defaultValue={user.password}
+                      onChange={handleEditChange}
+                    />
+                  </label>
+                  <div>
+                  <div>
+                  <button className="button-actualizar" type="submit-actualizar">Actualizar Datos</button>
+                  <button className="button-eliminar" onClick={deleteUser}>Eliminar Cuenta</button>
+                  </div>
+                    <button className="button-volver2">
+                    <Link to={"/"}>Regresar</Link>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            ) : (
+              <div>
+               <h3 className="register-heading">Formulario de Registro</h3>
+                <p className="register-description">Por favor, complete todos los campos para registrarte.</p>
+                <form id="registroNuevoUsuario" onSubmit={handleAddSubmit}>
+                  <label htmlFor="name">
+                    Nombre:
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="mail">
+                    Email:
+                    <input
+                      type="email"
+                      id="mail"
+                      name="mail"
+                      required
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="phone">
+                    Telefono:
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label htmlFor="password">
+                    Contraseña:
+                    <input
+                      type="text"
+                      id="password"
+                      name="password"
+                      required
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <div>
+                    <button type="submit-register">Registrarse</button>
+                    <button type="submit-regresar">Regresar</button>
+                  </div>
+                  
+                </form>
+              </div>
+            )}
+          </main>
+          
+          <Footer />
         </>
-    );
-}
-
-export default Register;
+      );
+    }
+    
+    export default Register;

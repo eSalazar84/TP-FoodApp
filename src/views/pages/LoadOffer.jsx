@@ -47,12 +47,10 @@ function LoadOffer() {
     return (
         <>
             <Header />
+            <h3 className="carga-oferta">Carga tu oferta acá</h3>
             <main>
-                <h3>Carga tu oferta acá</h3>
                 {user ? (
-
-
-                    <form id="registroNuevoUsuario" onSubmit={handleSubmit}>
+                    <form id="oferta" onSubmit={handleSubmit}>
                         <label htmlFor="foto">
                             Foto descriptiva de lo que queres publicar (copia y pega una ruta de internet):
                             <input type="text" id="foto" name="foto" required
@@ -73,7 +71,9 @@ function LoadOffer() {
                         </label>
                         <div>
                             <button type="submit">Subir Oferta</button>
-                            <button><Link to={"/"} >Volver a la pagina principal</Link> </button>
+                            <button className="button-offer">
+                            <Link to={"/"}>Volver a la página principal</Link>
+                            </button>
                         </div>
                     </form>
                 ) : (
