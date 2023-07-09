@@ -25,7 +25,6 @@ function LoadOffer() {
         })
             .then(res => res.json())
             .then(menu => {
-                console.log(menu);
                 setMenu(menu);
                 window.location = "/"
             })
@@ -72,7 +71,7 @@ function LoadOffer() {
                         <div>
                             <button type="submit">Subir Oferta</button>
                             <button className="button-offer">
-                            <Link to={"/"}>Volver a la página principal</Link>
+                                <Link to={"/"}>Volver a la página principal</Link>
                             </button>
                         </div>
                     </form>

@@ -5,8 +5,7 @@ import Index from './views/pages/Index.jsx';
 import Register from './views/pages/Register.jsx';
 import Us from './views/pages/Us.jsx';
 import LoadOffer from './views/pages/LoadOffer.jsx';
-import Contact from './views/components/Contact';
-import UserList from './views/pages/UserList.jsx'
+import Contact from './views/pages/Contact';
 import { Routes, Route } from "react-router-dom";
 
 import { UserProvider } from './UserContext';
@@ -23,8 +22,7 @@ function App() {
           <Route exact path='/Us.jsx' element={<Us />} />
           <Route exact path='/LoadOffer.jsx' element={<LoadOffer />} />
           <Route exact path='/Contact.jsx' element={<Contact />} />
-          <Route exact path='/UserList.jsx' element={<UserList />}/>
-          <Route exact path='*' element={<div><h1>Pagina no encontrada</h1></div>}  />
+          <Route exact path='*' element={<div><h1>Pagina no encontrada</h1></div>} />
         </Routes>
       </UserProvider>
     </>

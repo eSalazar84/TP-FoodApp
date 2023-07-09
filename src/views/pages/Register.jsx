@@ -10,7 +10,6 @@ const users_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/users/";
 function Register() {
 
   const { user } = useContext(UserContext);
-  console.log(user);
 
   const { handleLogout } = useContext(UserContext);
 
@@ -31,7 +30,6 @@ function Register() {
     })
       .then((res) => res.json())
       .then(data => {
-        console.log(data);
         setUsers(data)
         window.location = "/";
       })
@@ -58,7 +56,7 @@ function Register() {
       }
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.timer) {
-        console.log('I was closed by the timer')
+        console.log('Ready')
       }
     })
     addOne(users);
@@ -74,7 +72,6 @@ function Register() {
   //-------------- Editar un User existente -------------------//
 
   const [editUsers, setEditUsers] = useState({});
-  console.log(editUsers);
 
   const editOne = (id, editUsers) => {
     fetch(users_url + `${id}`, {
@@ -84,7 +81,6 @@ function Register() {
     })
       .then((res) => res.json())
       .then(data => {
-        console.log(data);
         setEditUsers(data);
         window.location = "/";
         handleLogout();
@@ -112,7 +108,6 @@ function Register() {
 
   function handleEditChange(e) {
     e.preventDefault();
-    console.log(editUsers);
     setEditUsers(((prev) => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -179,7 +174,6 @@ function Register() {
           <div>
             <h3 className="register-heading">Actualiza tus datos</h3>
             <p className="register-description">Acá podés modificar los datos de tu cuenta</p>
-            <p className="register-description">Si queres ir al listado de usuarios, entra <Link to={"/UserList.jsx"}>Acá.</Link></p>
             <form id="registroactualizar" onSubmit={handleEditSubmit}>
               <label htmlFor="name">
                 Nombre:

@@ -9,12 +9,12 @@ function Header() {
         <>
             <header >
                 <nav className="header-format">
-                    <Link to={"/"} ><img src="./src/assets/Food App.svg" /></Link> 
+                    <Link to={"/"} ><img src="./src/assets/Food App.svg" /></Link>
                     {
                         user ? (
                             <div>
                                 <ul>
-                                <li className="welcome-message">Bienvenid@, {user.name}</li>
+                                    <li className="welcome-message">Bienvenid@, {user.name}</li>
                                     <li><Link to={"/Register.jsx"}><button className="btn1">Modificar datos</button></Link></li >
                                     <li><button className="btn2" onClick={handleLogout}>Cerrar sesion</button></li>
                                 </ul >

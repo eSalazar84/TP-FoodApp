@@ -3,13 +3,13 @@ import React, { createContext, useState, useEffect } from 'react';
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    
+
     const [user, setUser] = useState(null);
 
     const handleLogin = (loggedInUser) => {
         setUser(loggedInUser);
         localStorage.setItem("user", JSON.stringify(loggedInUser));
-        window.location="/";
+        window.location = "/";
     };
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const UserProvider = ({ children }) => {
     const handleLogout = () => {
         setUser(null);
         localStorage.removeItem('user');
-        window.location="/";
+        window.location = "/";
     };
 
     return (

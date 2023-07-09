@@ -3,7 +3,7 @@ import { UserContext } from "../../UserContext.jsx";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
-import Menus from "../components/Menus.jsx";
+import SearchMenu from "../components/SearchMenu.jsx";
 
 const menu_url = "https://647a6c7ed2e5b6101db05858.mockapi.io/menu"
 
@@ -20,7 +20,7 @@ function Index() {
             .then(data => {
                 setMenu(data);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.error(err))
     }
 
     useEffect(() => {
@@ -46,12 +46,12 @@ function Index() {
                     <section className="button-position">
                         {user ? (
                             <div>
-                                <button className="publicar"><Link to={"/LoadOffer.jsx"}>Publica tu Oferta</Link></button>
+                                <Link to={"/LoadOffer.jsx"}><button className="publicar">Publica tu Oferta</button></Link>
                                 <button className="ver" onClick={handleClick}>{message}</button>
                             </div>
                         ) : (
                             <div>
-                                <button className="publicar"><Link to={"/Login.jsx"}>Publica tu Oferta</Link></button>
+                                <Link to={"/Login.jsx"}><button className="publicar">Publica tu Oferta</button></Link>
                                 <button className="ver" onClick={handleClick}>{message}</button>
                                 <section className="reputation">
                                     <h3>¡Mira nuestra reputación!</h3>
@@ -68,15 +68,9 @@ function Index() {
                 </aside>
             </main>
             <div className={containerClassName}>
-                <div className="listado">
-                    <section className="listadover">
-                        <h3>¡Pedi lo que quieras!</h3>
-                        <p>Minutas, comidas gourmet, postres y mucho más.</p>
-                    </section>
-
-                </div>
                 <section className='card-container'>
-                    <Menus menus={menu} />
+                    <SearchMenu menus={menu} />
+                    {/* <Menus menus={menu} /> */}
                 </section>
             </div>
             <Footer />

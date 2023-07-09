@@ -1,35 +1,49 @@
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import Swal from "sweetalert2";
 function Contact() {
     function handleSubmit(e) {
         e.preventDefault()
-        const nombre = e.target[0].value;
-        const asunto = e.target[1].value;
-        const mensaje = e.target[2].value;
-        if ((nombre === "") || (asunto === "seleccion") || (mensaje === "")) {
-            alert('Debe completar todos los campos');
+
+        const mail = {
+            nombre: e.target[0].value,
+            asunto: e.target[1].value,
+            mensaje: e.target[2].value
+        }
+
+        if ((mail.nombre === "") || (mail.mensaje === "")) {
+            Swal.fire('Debe completar todos los campos');
         } else {
-            alert('Mensaje enviado');
-            console.log(nombre);
-            console.log(asunto);
-            console.log(mensaje);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Gracias por contactarte con nosotros!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            console.log(mail);
         }
     }
     return (
         <>
             <Header />
-            <form onSubmit={handleSubmit}>
-                <div> <label htmlFor="fullname">Nombre y Apellido</label>
-                    <input type="text" name='fullname' id='fullname' /></div>
-                <div> <label htmlFor="asunto">Asunto</label>
-                    <select name="asunto" id="asunto">
-                        <option value="seleccion" selected>Seleccione opcion</option>
-                        <option value="compras">Compras</option>
-                        <option value="inconveniente">Inconveniente</option>
-                    </select></div>
-                <div><label htmlFor="mensage">Mensaje</label>
-                    <textarea name="mensage" id="mensage" cols="30" rows="10" placeholder='Escriba su mensaje...'></textarea></div>
-                <div><button type="submit">Enviar</button> - <button type="reset">Limpiar</button></div>
+            <form id="registroactualizar" onSubmit={handleSubmit}>
+                <label htmlFor="nombre">Nombre y Apellido
+                    <input type="text" name='nombre' id='nombre' />
+                </label>
+                <label htmlFor="asunto">Asunto</label>
+                <select defaultValue="Compras" name="asunto" id="asunto">
+                    <option value="Compras">Compras</option>
+                    <option value="Ventas">Ventas</option>
+                    <option value="Inconvenientes">Inconvenientes</option>
+                </select>
+                <label htmlFor="mensaje">Mensaje</label>
+                <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder='Escriba su mensaje...'></textarea>
+
+                <div>
+                    <button className="busqueda" type="submit">Enviar</button>
+                    <button className="busqueda" type="reset">Limpiar</button>
+                </div>
             </form>
             <Footer />
         </>

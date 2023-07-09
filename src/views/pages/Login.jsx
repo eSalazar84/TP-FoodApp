@@ -22,7 +22,6 @@ function Login() {
         fetch(users_url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setUsers(data);
             })
             .catch(err => console.error(err))
@@ -42,7 +41,6 @@ function Login() {
     }
 
     function handleChange(e) {
-        console.log(logIn);
         setLogIn((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
