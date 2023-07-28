@@ -73,7 +73,7 @@ function Login() {
                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                             <label className="form-check-label" htmlFor="exampleCheck1">Recordar mi contraseña</label>
                         </div>
-                        <button type="submit" className="btn btn-primary">Enviar</button>
+                        <button type="submit" className="btn btn-success">Enviar</button>
                         {message && <p>{message}</p>}
                         <p>Sos nuevo en el sitio? <Link to={"/Register.jsx"} >Registrate acá.</Link> </p>
                     </form>

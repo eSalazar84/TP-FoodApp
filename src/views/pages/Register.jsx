@@ -42,14 +42,14 @@ function Register() {
     Swal.fire({
       title: 'Bienvenido a <img src="./src/assets/Food App.svg" />',
       html: 'Espera un momento, seras redirigido....',
-      timer: 6000,
+      timer: 7000,
       timerProgressBar: true,
       didOpen: () => {
         Swal.showLoading()
         const b = Swal.getHtmlContainer().querySelector('b')
         timerInterval = setInterval(() => {
           b.textContent = Swal.getTimerLeft()
-        }, 100)
+        }, 1000)
       },
       willClose: () => {
         clearInterval(timerInterval)
@@ -268,7 +268,7 @@ function Register() {
               <label htmlFor="password">
                 Contraseña:
                 <input
-                  type="text"
+                  type="password"
                   id="password"
                   name="password"
                   required
@@ -277,7 +277,7 @@ function Register() {
               </label>
               <div>
                 <button type="submit-register">Registrarse</button>
-                <button type="submit-regresar">Regresar</button>
+                <Link to={"/"}><button type="submit-regresar">Regresar</button></Link>
               </div>
 
             </form>

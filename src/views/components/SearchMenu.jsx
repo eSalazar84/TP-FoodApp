@@ -21,11 +21,11 @@ const UserSearch = () => {
   //guardamos los usuarios
   const [menus, setMenus] = useState([]);
   //usuarios filtrados, que coinciden con el la palabra de busqueda
-  //const [filteredMenus, setFilteredMenus] = useState([]);
 
-  const [sortedMenus, setSortedMenus] = useState([])
+  const [sortedMenus, setSortedMenus] = useState([]);
 
-  const [show, setShow] = useState(false);
+  //Ordena de mayor a menor o viseversa, mediante un estado booleano
+  const [ordAscDesc, setOrdAscDesc] = useState(true);
 
   const [currentUser, setCurrentUser] = useState(blankUser);
 
@@ -53,17 +53,28 @@ const UserSearch = () => {
     fetchMenus(menu_url);
   }, []);
 
-  //busqueda
+  
   const handleSearch = () => {
     const filtered = menus.filter((usr) =>
       usr.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setMenus(filtered.slice(0, 10)); // Limitar a los primeros 10 resultados
+    setMenus(filtered.slice(0, 10)); 
   };
 
-  const handleSort = () => {
-    const sorted = menus.sort((a, b) => a.precio - b.precio);
-    setSortedMenus(sorted)
+  const SortPrice = () => {
+    const sorted = menus.sort((a, b) => {
+      if (ordAscDesc) {
+        return a.precio - b.precio; 
+      } else {
+        return b.precio - a.precio; 
+      }
+    });
+    setSortedMenus(sorted);
+  }
+
+  const handleSort = () =>{
+    setOrdAscDesc(!ordAscDesc);
+    SortPrice();
   }
 
   const handleReset = () => {

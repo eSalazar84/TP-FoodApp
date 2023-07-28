@@ -60,7 +60,7 @@ input {
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
-  margin-top: 400px;
+  margin-top: 250px;
 }
 
 .show {
@@ -102,7 +102,7 @@ header {
 
 /* ----- Footer ------- */
 
-.links{
+.links {
   color: var(--bs-heading-color)
 }
 
@@ -116,7 +116,7 @@ header {
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  margin-top: 500px;
+  margin-top: 290px;
 }
 
 .center-position {
@@ -174,7 +174,7 @@ ul li {
 
 /* ----- Index ------- */
 
-.margin-btn{
+.margin-btn {
   margin-right: 10px;
 }
 
@@ -183,7 +183,7 @@ ul li {
   color: #FFFFFF;
 }
 
-.card-format{
+.card-format {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -301,7 +301,7 @@ main {
   animation: fadeIn 1s ease-in-out;
 }
 
-.busqueda{
+.busqueda {
   background-color: #4551a0;
   color: #FFFFFF;
   border-radius: 4px;
@@ -629,6 +629,7 @@ button[type="submit-register"]:focus {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
+  margin-top: 120px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f9f9f9;
@@ -741,7 +742,7 @@ button[type="submit-register"]:focus {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 75vw;
+  width: 60vw;
   margin: auto;
   padding-top: 200px;
 }
@@ -763,7 +764,7 @@ button[type="submit-register"]:focus {
 }
 
 .mission-section p {
-  text-align: center;
+  text-align: left;
 }
 
 .contact-form {

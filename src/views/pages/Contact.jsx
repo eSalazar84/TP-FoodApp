@@ -27,7 +27,7 @@ function Contact() {
     return (
         <>
             <Header />
-            <form id="registroactualizar" onSubmit={handleSubmit}>
+            <form id="registroactualizar" className="registroactualizar" onSubmit={handleSubmit}>
                 <label htmlFor="nombre">Nombre y Apellido
                     <input type="text" name='nombre' id='nombre' />
                 </label>
